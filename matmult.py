@@ -52,3 +52,33 @@ def euclidean_dist(a,b):
         return None
 
     return math.sqrt(distance)
+
+
+# Multiply matrix A by vector v (required by searchdata.py)
+def matvecmult(A, v):
+    """
+    Multiply matrix A by vector v.
+
+    Args:
+        A (list of lists): Matrix
+        v (list): Vector
+
+    Returns:
+        list: Result vector
+    """
+    if not A or not v:
+        return []
+
+    rows_A = len(A)
+    cols_A = len(A[0]) if A else 0
+
+    if cols_A != len(v):
+        raise ValueError("Matrix and vector dimensions don't match")
+
+    result = [0] * rows_A
+
+    for i in range(rows_A):
+        for j in range(cols_A):
+            result[i] += A[i][j] * v[j]
+
+    return result
